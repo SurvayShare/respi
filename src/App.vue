@@ -32,7 +32,7 @@ export default {
 
   data(){
     return {
-      appTitle: 'Awesome App 2',
+      appTitle: 'ReciPi',
       menuItems: [
           { title: 'Home', path: '/home', icon: 'home' },
           { title: 'Sign Up', path: '/signup', icon: 'face' },
