@@ -24,7 +24,7 @@
     <v-card-title>{{recipe.title}}</v-card-title>
 
     <v-card-text>
-        <div class="content-shortant" v-html="recipe.content.body"></div>
+        <small class="content-shortant" v-html="recipe.content.body"></small>
 
         <v-card-actions>
             <v-btn color="deep-purple lighten-2" text @click="reserve">
@@ -36,13 +36,11 @@
     <v-divider class="mx-4"></v-divider>
 
     <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="reserve"
-      >
+    <router-link to="/Purchase">
+      <v-btn color="deep-purple lighten-2" text @click="reserve">
         Buy now
       </v-btn>
+    </router-link>
     </v-card-actions>
   </v-card>
     </div>

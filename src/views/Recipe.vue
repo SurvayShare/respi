@@ -1,15 +1,28 @@
 <template>
-  <hello-world />
+  <div>
+    <Recipes :recipes="recipes"/>
+    
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+  import Recipes from '../components/Recipes'
+  import RecipeApi from '../api/RecipeApi'
 
   export default {
-    name: 'Home',
+    name: 'Recipe',
 
     components: {
-      HelloWorld,
+      Recipes,
     },
+    data(){
+      return{
+        recipes: [],
+      }
+    },
+    async created(){
+      const recipeApi = new RecipeApi;
+      this.recipes = await recipeApi.getAllRecipes();
+    }
   }
 </script>

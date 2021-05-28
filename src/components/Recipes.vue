@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Task from './Recipe'
+import Recipe from './Recipe'
 export default {
     name: 'Recipes',
     props:{
