@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar app style="max-height:9%">
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">
           {{ appTitle }}
@@ -40,5 +40,7 @@ export default {
      ]
     }
   },
+  
 };
 </script>
+
