@@ -85,7 +85,8 @@ export default {
 }
 
 .content-shortant{
-  white-space: nowrap; 
+  white-space: nowrap;
+  width: 250px;
   height: 50px;
   overflow: hidden;
   text-overflow: ellipsis; 
