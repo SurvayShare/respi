@@ -31,7 +31,7 @@
 
         <v-card-actions>
             <v-btn color="deep-purple lighten-2" text @click="reserve">
-                <router-link :to="{ path: '/recipes/' + recipe.id }">See more...</router-link>
+                <router-link :to="{ path: `/recipes/${recipe.id}` }">See more...</router-link>
             </v-btn>
         </v-card-actions>
     </v-card-text>

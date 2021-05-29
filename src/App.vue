@@ -34,9 +34,9 @@ export default {
     return {
       appTitle: 'ReciPi',
       menuItems: [
-          { title: 'Recipe', path: '/', icon: 'home' },
+          { title: 'Recipes', path: '/', icon: 'home' },
           { title: 'Orders', path: '/order', icon: 'face' },
-          { title: 'User Info', path: '/userInfo', icon: 'lock_open' }
+          { title: 'User Info', path: '/user_info', icon: 'lock_open' }
      ]
     }
   },
