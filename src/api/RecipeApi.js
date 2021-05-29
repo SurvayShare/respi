@@ -11,9 +11,9 @@ class RecipeApi extends BaseApi {
     return response.data.data.recipes;
   }
 
-  async getFood(id) {
+  async getRecipe(id) {
     const response = await axios.get(`${this.path}/${id}`);
-    return response.data.data.foods;
+    return response.data.data;
   }
 }
 

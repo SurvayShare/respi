@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar app style="max-height:9%">
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">
           {{ appTitle }}
@@ -34,11 +34,13 @@ export default {
     return {
       appTitle: 'ReciPi',
       menuItems: [
-          { title: 'Recipe', path: '/', icon: 'home' },
-          { title: 'Orders', path: '/about', icon: 'face' },
-          { title: 'User Info', path: '/signin', icon: 'lock_open' }
+          { title: 'Recipes', path: '/', icon: 'home' },
+          { title: 'Orders', path: '/order', icon: 'face' },
+          { title: 'User Info', path: '/user_info', icon: 'lock_open' }
      ]
     }
   },
+  
 };
 </script>
+

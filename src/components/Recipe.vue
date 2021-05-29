@@ -4,7 +4,7 @@
   <v-card
     :loading="loading"
     class="mx-auto my-12"
-    max-width="374"
+    max-width="300"
   >
     <template slot="progress">
       <v-progress-linear
@@ -15,7 +15,7 @@
     </template>
 
     <v-img
-      height="250"
+      height="200"
       v-bind:src="`${recipe.cover_url}`" class="imageproduit recipe-img"
     ></v-img>
 
@@ -24,24 +24,18 @@
     <v-card-title>{{recipe.title}}</v-card-title>
 
     <v-card-text>
-        <small class="content-shortant" v-html="recipe.content.body"></small>
+        <div class="content-shortant">
+          <small v-html="recipe.content.body"></small>
+        </div>
+
 
         <v-card-actions>
             <v-btn color="deep-purple lighten-2" text @click="reserve">
-                See more...
+                <router-link :to="{ path: `/recipes/${recipe.id}` }">See more...</router-link>
             </v-btn>
         </v-card-actions>
     </v-card-text>
 
-    <v-divider class="mx-4"></v-divider>
-
-    <v-card-actions>
-    <router-link to="/Purchase">
-      <v-btn color="deep-purple lighten-2" text @click="reserve">
-        Buy now
-      </v-btn>
-    </router-link>
-    </v-card-actions>
   </v-card>
     </div>
 </template>
@@ -87,12 +81,13 @@ export default {
 .recipe-img{
     height: 150px;
     width: 200px;
-    margin-left: 23%;
+    margin-left: 15%;
 }
 
-.content-shoartant{
-  white-space: nowrap; 
-  width: 50px; 
+.content-shortant{
+  white-space: nowrap;
+  width: 250px;
+  height: 50px;
   overflow: hidden;
   text-overflow: ellipsis; 
 }
