@@ -26,10 +26,17 @@
 </template>
 
 <script>
+import UserApi from '@/api/UserApi'
+import store from '@/store';
 
 export default {
   name: 'App',
-
+  async mounted() {
+    const userApi = new UserApi;
+    console.log(store.state.accessToken);
+    const { username, email } = await userApi.getUserInfo(store.state.accessToken);
+    console.log(username, email)
+  },
   data(){
     return {
       appTitle: 'ReciPi',
