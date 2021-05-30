@@ -30,7 +30,7 @@
 
 
         <v-card-actions>
-            <v-btn color="deep-purple lighten-2" text @click="reserve">
+            <v-btn color="deep-purple lighten-2" text>
                 <router-link :to="{ path: `/recipes/${recipe.id}` }">See more...</router-link>
             </v-btn>
         </v-card-actions>

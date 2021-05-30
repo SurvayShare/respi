@@ -6,7 +6,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLogin: false,
     accessToken: Cookies.get("accessToken"),
     expiresIn: null
   },
@@ -16,17 +15,28 @@ export default new Vuex.Store({
       state.accessToken = payload.access_token;
       state.expiresIn = payload.expires_in;
       Cookies.set("accessToken", payload.access_token, payload.expires_in);
-      state.isLogin = true;
     },
     LOGIN(state) {
       if(state.accessToken){
         state.accessToken = Cookies.get("accessToken");
-        state.isLogin = true;
       }
+    },
+    LOGOUT(state) {
+      state.accessToken = null;
+      Cookies.remove('accessToken');
+      localStorage.removeItem('refresh_token');
     }
   },
   actions: {
   },
   modules: {
+  },
+  getters: {
+    getAccessToken: () => {
+      return Cookies.get("accessToken");
+    },
+    isLogin: (_state, getters) => {
+      return getters.getAccessToken ? true : false;
+    }
   }
 })
