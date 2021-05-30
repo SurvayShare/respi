@@ -1,9 +1,9 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="recipe">
         <v-card elevation="2" shaped>
             <br>
             <h3>{{ recipe.title }}</h3>
-            <div class="content-fit">
+            <div class="content-fit" v-if="recipe.content">
                 <small v-html="recipe.content.body"></small>        
             </div>
             <div>

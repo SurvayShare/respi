@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app style="max-height:9%">
+    <v-app-bar app style="max-height:9%">
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">
           {{ appTitle }}
@@ -8,46 +8,59 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn
-          flat
-          v-for="item in menuItems"
-          :key="item.title"
-          :to="item.path">
-          <v-icon left dark>{{ item.icon }}</v-icon>
-          {{ item.title }}
+        <v-btn :to="'/'" >
+          <v-icon left dark>home</v-icon>
+          Recipes
         </v-btn>
+        <v-btn :to="'/order'" >
+          <v-icon left dark>list</v-icon>
+          Orders
+        </v-btn>
+        <template v-if="isLogin">
+          <v-btn :to="'/userInfo'">
+            <v-icon left dark>account_circle</v-icon>
+            User Info
+          </v-btn>
+          <v-btn @click="logout">
+            <v-icon left dark>logout</v-icon>
+            Logout
+          </v-btn>
+        </template>
+        <template v-else>
+          <v-btn :to="'/login'">
+            <v-icon left dark>login</v-icon>
+            Login
+          </v-btn>
+        </template>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-app-bar>
     
-    <v-content>
+    <v-main>
       <router-view></router-view>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import UserApi from '@/api/UserApi'
-import store from '@/store';
-
+import { mapGetters } from 'vuex';
+import store from './store/index';
 export default {
   name: 'App',
-  async mounted() {
-    const userApi = new UserApi;
-    console.log(store.state.accessToken);
-    const { username, email } = await userApi.getUserInfo(store.state.accessToken);
-    console.log(username, email)
-  },
   data(){
     return {
       appTitle: 'ReciPi',
-      menuItems: [
-          { title: 'Recipes', path: '/', icon: 'home' },
-          { title: 'Orders', path: '/order', icon: 'face' },
-          { title: 'User Info', path: '/user_info', icon: 'lock_open' }
-     ]
     }
   },
-  
+  methods: {
+    logout() {
+      store.commit("LOGOUT");
+    }
+  },
+  computed: {
+    ...mapGetters([
+      "isLogin"
+    ])
+  }
 };
 </script>
 
