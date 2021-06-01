@@ -16,6 +16,14 @@ class OrderApi extends BaseApi {
   get headers() {
     return { 'Authorization': `Bearer ${this.access_token}`}
   }
+
+  // postOrder(order_data){
+  //   axios({
+  //     method: 'post',
+  //     url: 'http://api-recipe.us-east-1.elasticbeanstalk.com/api/v1/foods',
+  //     data: order_data
+  //   });
+  // }
 }
 
 export default OrderApi;

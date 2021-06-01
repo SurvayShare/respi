@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     accessToken: Cookies.get("accessToken"),
-    expiresIn: null
+    expiresIn: null,
+    foods: [],
   },
   mutations: {
     AUTH(state, payload) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
       state.accessToken = null;
       Cookies.remove('accessToken');
       localStorage.removeItem('refresh_token');
+    },
+    ORDER(state, payload){
+      state.foods = payload.foods 
     }
   },
   actions: {
@@ -37,6 +41,9 @@ export default new Vuex.Store({
     },
     isLogin: (_state, getters) => {
       return getters.getAccessToken ? true : false;
+    },
+    getOrderFood: (state) =>{
+      return state.foods
     }
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex-container">
     <Recipes :recipes="recipes"/>
     
   </div>
@@ -26,3 +26,9 @@
     }
   }
 </script>
+
+<style scoped>
+.flex-container{
+  display: flex;
+}
+</style>

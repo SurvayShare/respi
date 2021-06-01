@@ -12,12 +12,12 @@
           <v-icon left dark>home</v-icon>
           Recipes
         </v-btn>
-        <v-btn :to="'/order'" >
-          <v-icon left dark>list</v-icon>
-          Orders
-        </v-btn>
         <template v-if="isLogin">
-          <v-btn :to="'/userInfo'">
+          <v-btn :to="'/order'" >
+            <v-icon left dark>list</v-icon>
+            Orders
+          </v-btn>
+          <v-btn :to="'/user_info'">
             <v-icon left dark>account_circle</v-icon>
             User Info
           </v-btn>
@@ -54,6 +54,7 @@ export default {
   methods: {
     logout() {
       store.commit("LOGOUT");
+      this.$router.push({name:'Recipe'})
     }
   },
   computed: {

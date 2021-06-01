@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-left: 40px;">
 
   <v-card
     :loading="loading"

@@ -19,7 +19,7 @@
                 <v-col cols="6" v-for="food in foods" :key="food.id">
                 <v-card class="food-card">
                     <v-img
-                    src="https://picsum.photos/350/165?random"
+                    :src="food.img_url"
                     height="125"
                     class="grey darken-4"
                     ></v-img>
@@ -36,9 +36,11 @@
 
 
             <div class="btn-fit">
-                <v-btn color="error">
-                    Add to Cart
-                </v-btn>            
+                <router-link class="single-recipe-btn" :to="{ path: `/orderpay/${recipe.id}`}">
+                <v-btn color="error" @click="buy()">
+                    Buy now
+                </v-btn>  
+                </router-link>          
             </div>      
 
         </v-card> 
@@ -47,13 +49,14 @@
 
 <script>
 import RecipeApi from '../api/RecipeApi'
-
+import store from '../store/index'
 export default {
     name: 'SingleRecipe',
     async created() {
         const recipeApi = new RecipeApi;
         this.recipe = await recipeApi.getRecipe(this.$route.params.id)
         this.foods = await this.recipe.foods
+        console.log(this.foods)
     },
     data(){
         return{
@@ -72,6 +75,12 @@ export default {
         img.setAttribute('src', attachment.getAttribute('url'))
         attachment.parentNode.replaceChild(img, attachment)
       }
+    },
+    buy(){
+        store.commit("ORDER", {
+        foods: this.foods
+        })
+        console.log('test')
     }
   },
   updated () {
@@ -110,5 +119,9 @@ small{
 .food-card{
     width: 200px;
     margin-left: 80px;
+}
+
+.single-recipe-btn{
+    text-decoration: none;
 }
 </style>
