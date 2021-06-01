@@ -65,7 +65,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import axios from 'axios';
-// import store from '../store/index';
+import store from '../store/index';
 export default {
     name:"OrderPay",
     components: {
@@ -115,6 +115,9 @@ export default {
               state:this.state,
               country: this.country,
               purchase_order_items:[ this.getOrderFood ]
+          },
+          {
+              headers: {'Authorization': `Bearer ${store.state.accessToken}`}
           })
           console.log(this.address)
       }
