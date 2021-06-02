@@ -19,9 +19,9 @@ class OrderApi extends BaseApi {
 
   async postOrder(orderData){
     orderData.purchase_order_items = this.toOrderItem(orderData.purchase_order_items);
-    console.log(orderData)
-    const response = await axios.post('http://api-recipe.us-east-1.elasticbeanstalk.com/api/v1/purchase_orders', orderData, { headers: this.headers })
-    if(response.data.message !== 'success'){
+
+    const response = await axios.post(this.path, orderData, { headers: this.headers })
+    if(response.data.message === 'success'){
       return response.data.data
     }else{
       throw 'Order created fail';
