@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     accessToken: Cookies.get("accessToken"),
     expiresIn: null,
-    foods: JSON.parse(Cookies.get("cart"))|| [],
+    foods: Cookies.get("cart"),
   },
   mutations: {
     AUTH(state, payload) {
@@ -44,7 +44,7 @@ export default new Vuex.Store({
       return getters.getAccessToken ? true : false;
     },
     getOrderFood: (state) =>{
-      return state.foods
+      return JSON.parse(state.foods) 
     }
   }
 })
