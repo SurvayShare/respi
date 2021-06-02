@@ -2,7 +2,6 @@
     <div style="margin-left: 40px;">
 
   <v-card
-    :loading="loading"
     class="mx-auto my-12"
     max-width="300"
   >

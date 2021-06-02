@@ -30,7 +30,7 @@
 
 <script>
 import UserApi from '@/api/UserApi'
-import store from '@/store';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'UserInfo',
@@ -42,13 +42,16 @@ export default {
   },
   async created() {
     const userApi = new UserApi;
-    console.log(store.state.accessToken);
-    const {username, email} = await userApi.getUserInfo(store.state.accessToken);
+    const {username, email} = await userApi.getUserInfo(this.getAccessToken);
     this.info_username = username;
     this.info_email = email;
-    console.log(this.info_username,this.info_email)
-    
   },
+  computed: {
+    ...mapGetters([
+        "isLogin",
+        "getAccessToken"
+    ])
+  }
   
 };
 </script>

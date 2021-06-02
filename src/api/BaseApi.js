@@ -1,7 +1,8 @@
 class BaseApi {
 
   constructor(local_var_path) {
-    this.api_url = process.env.API_URL || 'http://api-recipe.us-east-1.elasticbeanstalk.com/api';
+    const url = process.env.VUE_APP_API_URL || 'http://api-recipe.us-east-1.elasticbeanstalk.com/api';
+    this.api_url = `${url}/api`
     this.local_var_path = local_var_path;
   }
 

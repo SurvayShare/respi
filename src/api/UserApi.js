@@ -2,7 +2,7 @@ const axios = require('axios'); //获得axios
 
 class UserApi {
   constructor() {
-    this.api_url = process.env.API_URL || 'http://api-recipe.us-east-1.elasticbeanstalk.com';
+    this.api_url = process.env.VUE_APP_API_URL || 'http://api-recipe.us-east-1.elasticbeanstalk.com'
     this.local_var_path = '/auth/userinfo'
   }
 
