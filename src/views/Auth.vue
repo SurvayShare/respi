@@ -26,9 +26,8 @@ export default {
       expires_in: this.expires_in
     });
 
-    if(store.getters.isLogin) {
-      this.$router.push({ name: 'Recipe'});
-    }
+    this.$router.push({ name: 'Recipe'});
+
   }
 }
 </script>

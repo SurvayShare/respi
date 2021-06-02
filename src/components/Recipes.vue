@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="flex-container">
     <div v-for="recipe in recipes" v-bind:key="recipe.id">
         <Recipe :recipe="recipe" />
     </div>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app style="max-height:9%">
+    <v-app-bar app style="max-height:20%">
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">
           {{ appTitle }}
@@ -12,12 +12,12 @@
           <v-icon left dark>home</v-icon>
           Recipes
         </v-btn>
-        <v-btn :to="'/order'" >
-          <v-icon left dark>list</v-icon>
-          Orders
-        </v-btn>
         <template v-if="isLogin">
-          <v-btn :to="'/userInfo'">
+          <v-btn :to="'/order'" >
+            <v-icon left dark>list</v-icon>
+            Orders
+          </v-btn>
+          <v-btn :to="'/user_info'">
             <v-icon left dark>account_circle</v-icon>
             User Info
           </v-btn>
