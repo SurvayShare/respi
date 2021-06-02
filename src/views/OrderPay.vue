@@ -51,7 +51,6 @@
         </v-data-table><br><br>
 
 
-
         <v-btn
             class="mr-4"
             type="submit"
@@ -126,7 +125,9 @@ export default {
                           }
         const orderApi = new OrderApi(this.getAccessToken);
         const response = await orderApi.postOrder(orderInfo);
-        console.log(response.data)
+
+        console.log(response.data.order)
+        this.$router.push({name: 'Invoice', params: {id: response.data.order.id}})
       }
     },
     computed: {

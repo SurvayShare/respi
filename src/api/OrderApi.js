@@ -9,7 +9,7 @@ class OrderApi extends BaseApi {
   }
 
   async getOrders() {
-    const response = await axios.get(this.path, {}, { headers: this.headers });
+    const response = await axios.get(this.path, { headers: this.headers });
     return response.data.data.purchase_orders;
   }
 
@@ -22,7 +22,7 @@ class OrderApi extends BaseApi {
 
     const response = await axios.post(this.path, orderData, { headers: this.headers })
     if(response.data.message === 'success'){
-      return response.data.data
+      return response.data
     }else{
       throw 'Order created fail';
     }
@@ -32,6 +32,11 @@ class OrderApi extends BaseApi {
     return items.map((item) => {
                       return {count: item.count, unit: item.unit, id: item.id}
                     })
+  }
+
+  async getOrder(id){
+    const response = await axios.get(`${this.path}/${id}`, {headers: this.headers});
+    return response.data
   }
 }
 

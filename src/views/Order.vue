@@ -2,10 +2,14 @@
   <div>
     <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="orders"
         :items-per-page="5"
         class="elevation-1" 
-    ></v-data-table>
+    >
+        <template v-slot:item.id="{ item }">
+            <a :href="'/invoice/' + item.id" style="width: 50px; height: 50px"> {{item.id}}</a>
+        </template>
+    </v-data-table>
   </div>
 </template>
 
@@ -19,11 +23,19 @@ export default {
             orders:[],
             headers:[          
             {
-                text: 'Customer',
+                text: 'Id',
                 align: 'start',
-                sortable: false,
-                value: 'customer_name',
+                sortable: true,
+                value: 'id',
+                href: '#'
             },
+            { text: 'Customer', value: 'customer_name' },
+            { text: 'Address', value: 'address' },
+            { text: 'City', value: 'city' },
+            { text: 'Country', value: 'country' },
+            { text: 'State', value: 'state' },
+            { text: 'Created at', value: 'created_at' },
+
           ],
         }
     },
@@ -31,13 +43,15 @@ export default {
         if (!this.isLogin){
             this.$router.push({name:'Login'})
         }
-        const orderApi = new OrderApi;
-        this.orders = orderApi.getOrders();
+        const orderApi = new OrderApi(this.getAccessToken);
+        this.orders = await orderApi.getOrders();
+        console.log(this.orders)
 
     },
     computed: {
         ...mapGetters([
-            "isLogin"
+            "isLogin",
+            "getAccessToken"
         ])
     }
 }

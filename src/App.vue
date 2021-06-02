@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app style="max-height:9%">
+    <v-app-bar app style="max-height:20%">
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">
           {{ appTitle }}
@@ -54,7 +54,6 @@ export default {
   methods: {
     logout() {
       store.commit("LOGOUT");
-      this.$router.push({name:'Recipe'})
     }
   },
   computed: {

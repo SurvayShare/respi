@@ -47,6 +47,11 @@ const routes = [
     path: '/orderpay/:id',
     name: 'OrderPay',
     component: () => import('../views/OrderPay.vue')
+  },
+  {
+    path: '/invoice/:id',
+    name: 'Invoice',
+    component: () => import('../views/Invoice.vue')
   }
 
 
