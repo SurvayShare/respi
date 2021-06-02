@@ -27,8 +27,7 @@ export default new Vuex.Store({
       Cookies.remove('accessToken');
       localStorage.removeItem('refresh_token');
     },
-    ADDTOCART(state, payload){
-      state.foods = payload.foods
+    ADDTOCART(_state, payload){
       Cookies.set("cart", payload.foods, 36000);
     }
   },
