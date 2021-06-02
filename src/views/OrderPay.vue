@@ -29,7 +29,15 @@
             v-model="state"
             label="State"
             required
-            ></v-text-field><br>
+            ></v-text-field>
+
+            <v-text-field
+            v-model="country"
+            label="Country"
+            required
+            ></v-text-field>
+            
+            <br>
         <small>Confirm your order</small><br><br>
         <v-data-table
             :headers="headers"
@@ -47,7 +55,6 @@
         <v-btn
             class="mr-4"
             type="submit"
-            :disabled="invalid"
         >
             Buy
         </v-btn>
@@ -64,8 +71,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import axios from 'axios';
-import store from '../store/index';
+import OrderApi from '@/api/OrderApi';
 export default {
     name:"OrderPay",
     components: {
@@ -75,9 +81,11 @@ export default {
     },
     data: () => ({
       name: '',
-      phoneNumber: '',
-      email: '',
+      city: 'Melbourne',
+      address: '',
+      state: 'Vic',
       select: null,
+      country: 'Au',
       items: [
         'Item 1',
         'Item 2',
@@ -107,28 +115,31 @@ export default {
         this.checkbox = null
         this.$refs.observer.reset()
       },
-      submit(){
-          axios.post('http://api-recipe.us-east-1.elasticbeanstalk.com/api/v1/purchase_orders', {
-              address: this.address,
-              city: this.city,
-              customer_name: this.name,
-              state:this.state,
-              country: this.country,
-              purchase_order_items:[ this.getOrderFood ]
-          },
-          {
-              headers: {'Authorization': `Bearer ${store.state.accessToken}`}
-          })
-          console.log(this.address)
+      async submit(){
+        const orderInfo = {
+                            address: this.address,
+                            city: this.city,
+                            customer_name: this.name,
+                            state:this.state,
+                            country: this.country,
+                            purchase_order_items: this.getOrderFood
+                          }
+        const orderApi = new OrderApi(this.getAccessToken);
+        const response = await orderApi.postOrder(orderInfo);
+        console.log(response.data)
       }
     },
     computed: {
         ...mapGetters([
-        "isLogin",
-        "getOrderFood"
+            "isLogin",
+            "getOrderFood",
+            "getAccessToken"
         ])
     },
     created(){
+        if (!this.getOrderFood || this.getOrderFood.size === 0){
+            this.$router.push({name: 'Recipe'})
+        }
         if (!this.isLogin){
             this.$router.push({name:'Login'})
         }

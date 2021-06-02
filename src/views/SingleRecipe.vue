@@ -68,19 +68,18 @@ export default {
         this.updateImages()
     },
     methods: {
-    updateImages () {
-      const attachments = document.querySelectorAll('action-text-attachment')
-      for (const attachment of attachments) {
-        const img = document.createElement('img')
-        img.setAttribute('src', attachment.getAttribute('url'))
-        attachment.parentNode.replaceChild(img, attachment)
-      }
+        updateImages () {
+        const attachments = document.querySelectorAll('action-text-attachment')
+        for (const attachment of attachments) {
+            const img = document.createElement('img')
+            img.setAttribute('src', attachment.getAttribute('url'))
+            attachment.parentNode.replaceChild(img, attachment)
+        }
     },
     buy(){
-        store.commit("ORDER", {
+        store.commit("ADDTOCART", {
         foods: this.foods
-        })
-        console.log('test')
+        });
     }
   },
   updated () {

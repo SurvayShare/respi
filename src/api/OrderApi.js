@@ -17,13 +17,22 @@ class OrderApi extends BaseApi {
     return { 'Authorization': `Bearer ${this.access_token}`}
   }
 
-  // postOrder(order_data){
-  //   axios({
-  //     method: 'post',
-  //     url: 'http://api-recipe.us-east-1.elasticbeanstalk.com/api/v1/foods',
-  //     data: order_data
-  //   });
-  // }
+  async postOrder(orderData){
+    orderData.purchase_order_items = this.toOrderItem(orderData.purchase_order_items);
+    console.log(orderData)
+    const response = await axios.post('http://api-recipe.us-east-1.elasticbeanstalk.com/api/v1/purchase_orders', orderData, { headers: this.headers })
+    if(response.data.message !== 'success'){
+      return response.data.data
+    }else{
+      throw 'Order created fail';
+    }
+  }
+
+  toOrderItem(items) {
+    return items.map((item) => {
+                      return {count: item.count, unit: item.unit, id: item.id}
+                    })
+  }
 }
 
 export default OrderApi;

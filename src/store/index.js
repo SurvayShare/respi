@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     accessToken: Cookies.get("accessToken"),
     expiresIn: null,
-    foods: [],
+    foods: JSON.parse(Cookies.get("cart"))|| [],
   },
   mutations: {
     AUTH(state, payload) {
@@ -27,8 +27,9 @@ export default new Vuex.Store({
       Cookies.remove('accessToken');
       localStorage.removeItem('refresh_token');
     },
-    ORDER(state, payload){
-      state.foods = payload.foods 
+    ADDTOCART(state, payload){
+      state.foods = payload.foods
+      Cookies.set("cart", payload.foods, 36000);
     }
   },
   actions: {
