@@ -54,6 +54,7 @@ export default {
   methods: {
     logout() {
       store.commit("LOGOUT");
+      this.$router.push({name: 'Recipe'});
     }
   },
   computed: {

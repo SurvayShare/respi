@@ -34,6 +34,9 @@
 								<td>
 									<b>Bill to</b><br />
 									{{ this.order.customer_name }}<br />
+                                    {{ this.order.address }}<br />
+                                    {{ this.order.state }}<br />
+                                    {{ this.order.country }}
 								</td>
 							</tr>
 						</table>
@@ -99,7 +102,6 @@ export default {
         const orderApi = new OrderApi(this.getAccessToken);
         const response = await orderApi.getOrder(this.$route.params.id)
         this.order = response.data.purchase_order
-        console.log(this.order)
     },
     computed: {
         ...mapGetters([
