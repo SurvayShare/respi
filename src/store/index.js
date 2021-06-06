@@ -24,7 +24,8 @@ export default new Vuex.Store({
       localStorage.removeItem('refresh_token');
       state.isLogin = false;
     },
-    ADDTOCART(_state, payload){
+    ADDTOCART(state, payload){
+      state.foods = payload.foods;
       Cookies.set("cart", payload.foods, { expires: 36000 });
     }
   },
@@ -58,7 +59,7 @@ export default new Vuex.Store({
       return state.isLogin
     },
     getOrderFood: (state) =>{
-      return JSON.parse(state.foods) 
+      return state.foods || JSON.parse(Cookies.get("cart")); 
     }
   }
 })

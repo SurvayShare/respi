@@ -36,11 +36,9 @@
 
 
             <div class="btn-fit">
-                <router-link class="single-recipe-btn" :to="{ path: `/orderpay/${recipe.id}`}">
                 <v-btn color="error" @click="buy()">
                     Buy now
-                </v-btn>  
-                </router-link>          
+                </v-btn>          
             </div>      
 
         </v-card> 
@@ -78,8 +76,9 @@ export default {
     },
     buy(){
         store.commit("ADDTOCART", {
-        foods: this.foods
+            foods: this.foods
         });
+        this.$router.push({name: 'OrderPay'})
     }
   },
   updated () {

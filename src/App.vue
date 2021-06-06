@@ -2,10 +2,18 @@
   <v-app>
     <v-app-bar app style="max-height:20%">
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">
-          {{ appTitle }}
+        <router-link to="/" tag="span" style="cursor: pointer;">
+          <v-toolbar-side-icon>
+             <v-img 
+              class='mr-3'
+              src='@/assets/logo-sushi.png'
+              height='64px'
+              width='64px'
+            ></v-img>
+          </v-toolbar-side-icon>
         </router-link>
       </v-toolbar-title>
+       {{ appTitle }}
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn :to="'/'" >
@@ -48,7 +56,7 @@ export default {
   name: 'App',
   data(){
     return {
-      appTitle: 'ReciPi',
+      appTitle: 'ResPi',
     }
   },
   methods: {

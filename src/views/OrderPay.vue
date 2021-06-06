@@ -50,7 +50,6 @@
         </template>
         </v-data-table><br><br>
 
-
         <v-btn
             class="mr-4"
             type="submit"
@@ -85,12 +84,6 @@ export default {
       state: 'Vic',
       select: null,
       country: 'Au',
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
       headers: [
             {
             text: 'Image',
@@ -126,7 +119,6 @@ export default {
         const orderApi = new OrderApi(this.getAccessToken);
         const response = await orderApi.postOrder(orderInfo);
 
-        console.log(response.data.order)
         this.$router.push({name: 'Invoice', params: {id: response.data.order.id}})
       }
     },
@@ -138,13 +130,15 @@ export default {
         ])
     },
     created(){
-        if (!this.getOrderFood || this.getOrderFood.size === 0){
-            this.$router.push({name: 'Recipe'})
-        }
         if (!this.isLogin){
             this.$router.push({name:'Login'})
         }
     },
+    mounted(){
+        if (!this.getOrderFood || this.getOrderFood.size === 0){
+            this.$router.push({name: 'Recipe'})
+        }
+    }
 }
 </script>
 

@@ -44,7 +44,7 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
-    path: '/orderpay/:id',
+    path: '/orderpay',
     name: 'OrderPay',
     component: () => import('../views/OrderPay.vue')
   },
